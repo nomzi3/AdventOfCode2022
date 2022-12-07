@@ -1,6 +1,9 @@
 #file_to_check = "test_input.txt"
 file_to_check = "input.txt"
 
+#Function checks if elf1's work is fully contained
+#within elf2's work, and vice versa.
+#Returns true if it is, false otherwise.
 def checkIfWorkIsOverlapping(elf1_input, elf2_input):
     nr_of_elf1_in_elf2 = 0
     nr_of_elf2_in_elf1 = 0
@@ -38,10 +41,14 @@ section_list = []
 
 
 total_overlapping = 0
+
+
+
 with open(file_to_check, "r") as f:
     lines = f.read().splitlines()
 
     for line in lines:
+        #split and sort into ranges
         split_instructions = line.split(",")
         print(split_instructions)
         elf1 = split_instructions[0].split("-")
@@ -55,6 +62,7 @@ with open(file_to_check, "r") as f:
         print(elf1_range)
         print(elf2_range)
 
+        #for each elf's section, check if fully contained within the others
         print("###################")
         isOverlapping = checkIfWorkIsOverlapping(elf1_range, elf2_range)
         if isOverlapping:
